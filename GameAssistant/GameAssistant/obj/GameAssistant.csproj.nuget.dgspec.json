@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant.csproj": {}
+    "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj": {}
   },
   "projects": {
-    "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant.csproj": {
+    "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
+        "projectUniqueName": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
         "projectName": "GameAssistant",
-        "projectPath": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
+        "projectPath": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
         "packagesPath": "C:\\Users\\frenc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\obj\\",
+        "outputPath": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\frenc\\AppData\\Roaming\\NuGet\\NuGet.Config",
