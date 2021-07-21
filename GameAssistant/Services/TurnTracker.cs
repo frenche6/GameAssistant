@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace GameAssistant.Services
 {
-    class TurnTracker : ITurnTracker
+    public class TurnTracker : ITurnTracker
     {
         public GameState EndTurn(GameState state)
         {
-            state.PlayerTurn = state.PlayerTurn + 1 % state.Players.Count();
+            state.PlayerTurn = (state.PlayerTurn + 1) % state.Players.Count();
             return state;
         }
     }
