@@ -47,6 +47,17 @@ namespace GameAssistant.UnitTest
         }
 
         [Fact]
+        public void DieConstructor_GivenStringList_CreatesWordDie()
+        {
+            var sides = new List<string>() {"Side1", "Side2", "Side3"};
+            var die = new WordDie(sides);
+            Assert.NotNull(die);
+            Assert.Equal("Side1", die.FaceValue);
+            Assert.Equal(1, die.Face);
+            Assert.Equal("Side1", die.ToString());
+        }
+
+        [Fact]
         public void DieRoll_GeneratesFaceAndFaceValue_NoErrors()
         {
             var faces = new List<int>() { 10, 20, 30 };
@@ -56,5 +67,7 @@ namespace GameAssistant.UnitTest
             Assert.Equal(die.Face, faces.IndexOf(result) + 1);
             Assert.Equal(die.FaceValue, result);
         }
+
+        
     }
 }
