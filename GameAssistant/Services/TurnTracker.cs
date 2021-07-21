@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace GameAssistant.Services
 {
-    class TurnService
+    class TurnTracker
     {
+
     }
 }
