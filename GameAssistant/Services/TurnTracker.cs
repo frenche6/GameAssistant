@@ -1,10 +1,6 @@
 ﻿using GameAssistant.Interfaces;
 using GameAssistant.Models;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace GameAssistant.Services
 {
@@ -12,7 +8,7 @@ namespace GameAssistant.Services
     {
         public GameState EndTurn(GameState state)
         {
-            //TODO: modify state
+            state.PlayerTurn = state.PlayerTurn + 1 % state.Players.Count();
             return state;
         }
     }

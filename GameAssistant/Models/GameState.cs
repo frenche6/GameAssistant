@@ -1,12 +1,14 @@
 ﻿using GameAssistant.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 namespace GameAssistant.Models
 {
     public class GameState
     {
-        public Guid Id { get; set; }
+        [Key]
+        public Guid Id { get; set; } = Guid.NewGuid();
 
         /// <summary>
         /// The name of the game being played
