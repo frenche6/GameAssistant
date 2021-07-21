@@ -1,11 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ps+XjNazeOg1HjT27faSXZDUz6EnoWZp8LEe2WEpYFd5/72VZZIBtGBTksN4805Lfw7rR2Qo3tSSuFF7KJOkGg==",
+  "dgSpecHash": "9HNPDyFGQWtonmqPh6ZsDC6ildk2bZeYlkIf26Ci14BQGGn9zLA+V6uek3bwOzRoAH1RhQapeEnwHJlKQqTqoA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\frenc\\source\\repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\frenc\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\frenc\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
-  ],
+  "projectFilePath": "C:\\Repos\\GameAssistant\\GameAssistant\\GameAssistant\\GameAssistant.csproj",
+  "expectedPackageFiles": [],
   "logs": []
 }
