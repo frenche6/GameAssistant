@@ -18,7 +18,7 @@ namespace GameAssistant.Services
             this._turnTracker = turnTracker;
         }
 
-        public async Task CreateAsync(string gameName, string title, IList<IPlayer> players)
+        public async Task<GameState> CreateAsync(string gameName, string title, IList<IPlayer> players)
         {
             var gameState = new GameState()
             {
@@ -26,12 +26,12 @@ namespace GameAssistant.Services
                 Title = title,
                 Players = players
             };
-            await CreateAsync(gameState);
+            return await CreateAsync(gameState);
         }
 
-        public async Task CreateAsync(GameState state)
+        public async Task<GameState> CreateAsync(GameState state)
         {
-            await _gameStateProvider.CreateAsync(state);
+            return await  _gameStateProvider.CreateAsync(state);
         }
 
         public async Task<GameState> LoadGameState(Guid id)

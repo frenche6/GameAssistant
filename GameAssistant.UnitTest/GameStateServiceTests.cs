@@ -30,17 +30,19 @@ namespace GameAssistant.UnitTest
             };
 
             var gameProvider = new Mock<IGameStateProvider>();
+            var turnTracker = new Mock<ITurnTracker>();
             gameProvider.Setup(g => g.CreateAsync(It.IsAny<GameState>())).ReturnsAsync(gameStateExpected);
             gameProvider.Setup(g => g.GetAsync(id)).ReturnsAsync(gameStateExpected);
 
-            var service = new GameStateService(gameProvider.Object);
+            var service = new GameStateService(gameProvider.Object, turnTracker.Object);
 
-            await service.CreateAsync(gameStateExpected.GameName, gameStateExpected.Title, gameStateExpected.Players);
+            var createResult = await service.CreateAsync(gameStateExpected.GameName, gameStateExpected.Title, gameStateExpected.Players);
             var gameStateActual = await service.LoadGameState(id);
 
             Assert.Equal(gameStateExpected.GameName, gameStateActual.GameName);
             Assert.Equal(gameStateExpected.Title, gameStateActual.Title);
             Assert.Equal(gameStateExpected.Players.Count, gameStateActual.Players.Count);
+            Assert.Equal(gameStateExpected, createResult);
         }
     }
 }
