@@ -10,10 +10,12 @@ namespace GameAssistant.Services
     public class GameStateService
     {
         private readonly IGameStateProvider _gameStateProvider;
+        private readonly ITurnTracker _turnTracker;
 
-        public GameStateService(IGameStateProvider gameStateProvider)
+        public GameStateService(IGameStateProvider gameStateProvider, ITurnTracker turnTracker)
         {
             this._gameStateProvider = gameStateProvider;
+            this._turnTracker = turnTracker;
         }
 
         public async Task CreateAsync(string gameName, string title, IList<IPlayer> players)
@@ -44,7 +46,7 @@ namespace GameAssistant.Services
 
         public virtual void EndTurn(GameState state)
         {
-            state.PlayerTurn = state.PlayerTurn + 1 % state.Players.Count();
+            _turnTracker.EndTurn(state);  
         }
 
     }
