@@ -3,14 +3,14 @@ using GameAssistant.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace GameAssistant.Services
 {
-    class GameStateService
+    public class GameStateService
     {
-        private IGameStateProvider _gameStateProvider;
+        private readonly IGameStateProvider _gameStateProvider;
+
         public GameStateService(IGameStateProvider gameStateProvider)
         {
             this._gameStateProvider = gameStateProvider;
