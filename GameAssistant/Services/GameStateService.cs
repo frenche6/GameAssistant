@@ -6,11 +6,18 @@ using System.Threading.Tasks;
 
 namespace GameAssistant.Services
 {
+    /// <inheritdoc/>
     public class GameStateService : IGameStateService
     {
         private readonly IGameStateProvider _gameStateProvider;
         private readonly ITurnTracker _turnTracker;
 
+        /// <summary>
+        /// Instantiate a new game state service to load and update the state of the game 
+        /// including player information
+        /// </summary>
+        /// <param name="gameStateProvider">The connector to the data store that persists information about game state</param>
+        /// <param name="turnTracker">A turn tracker to manage player turns and related rules</param>
         public GameStateService(IGameStateProvider gameStateProvider, ITurnTracker turnTracker)
         {
             this._gameStateProvider = gameStateProvider;
@@ -37,6 +44,7 @@ namespace GameAssistant.Services
         {
             return await _gameStateProvider.GetAsync(id);
         }
+
 
         public async Task UpdateGameState(GameState newState)
         {
