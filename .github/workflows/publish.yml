@@ -18,7 +18,15 @@ jobs:
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.x'
-
+          
+      - name: Automated Version Bump
+        # You may pin to the exact commit or the version.
+        # uses: phips28/gh-action-bump-version@bbd196e988e4612476d63b183ab1146db423e4d2
+        uses: phips28/gh-action-bump-version@v8.0.18
+        with:
+          # Prefix that is used for the git tag
+          tag-prefix: 'v'
+          
       - name: Git Version
         id: version
         uses: codacy/git-version@2.4.0
