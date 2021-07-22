@@ -6,13 +6,13 @@ namespace GameAssistant.Interfaces
     public interface IDiceTower<T>
     {
         /// <summary>
-        /// Adds a single die to the dice bag
+        /// Adds a single die to the dice tower
         /// </summary>
         /// <param name="die">The die to add</param>
         void AddDie(BaseDie<T> die);
 
         /// <summary>
-        /// Adds a list of dice to the dice bag
+        /// Adds a list of dice to the dice tower
         /// </summary>
         /// <param name="dice">The list of dice to add</param>
         void AddDice(List<BaseDie<T>> dice);
@@ -25,7 +25,7 @@ namespace GameAssistant.Interfaces
 
 
         /// <summary>
-        /// Empties the dice bag of all dice
+        /// Empties the dice tower of all dice
         /// </summary>
         void EmptyDiceTower();
 
