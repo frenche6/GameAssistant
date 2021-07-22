@@ -1,32 +1,37 @@
 name: Publish to nuget
 on:
   push:
-    branches:
-      - main # Default release branch
+    tags:
+      - 'v*.*.*'
+
 jobs:
   publish:
     name: build, pack & publish
     runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v2
-        with:
-          ref: ${{ github.head_ref }}   # checkout the correct branch name
-          fetch-depth: 0                # fetch the whole repo history
+    steps: 
+    - uses: actions/checkout@v2
+    
+    - name: Set env
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+    
+    - name: Checkout Code
+      uses: actions/checkout@v2
+      with:
+        ref: ${{ github.head_ref }}   # checkout the correct branch name
+        fetch-depth: 0                # fetch the whole repo history
       
-      - name: Setup dotnet
-        uses: actions/setup-dotnet@v1
-        with:
-          dotnet-version: '5.x'
+    - name: Setup dotnet
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.x'
 
-
-      # Publish
-      - name: Publish NuGet
-        uses: brandedoutcast/publish-nuget@v2.5.5
-        with:
-          PROJECT_FILE_PATH: GameAssistant/GameAssistant.csproj
-          TAG_COMMIT: true
-          TAG_FORMAT: v*
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>$
+    # Publish
+    - name: Publish NuGet
+      uses: brandedoutcast/publish-nuget@v2.5.5
+      with:
+        PROJECT_FILE_PATH: GameAssistant/GameAssistant.csproj
+        TAG_COMMIT: true
+        TAG_FORMAT: v*
+        NUGET_KEY: ${{secrets.NUGET_API_KEY}}
+        VERSION_STATIC: ${{ env.RELEASE_VERSION }}
           
