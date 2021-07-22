@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GameAssistant.Services
 {
-    public class GameStateService
+    public class GameStateService : IGameStateService
     {
         private readonly IGameStateProvider _gameStateProvider;
         private readonly ITurnTracker _turnTracker;
@@ -30,7 +30,7 @@ namespace GameAssistant.Services
 
         public async Task<GameState> CreateAsync(GameState state)
         {
-            return await  _gameStateProvider.CreateAsync(state);
+            return await _gameStateProvider.CreateAsync(state);
         }
 
         public async Task<GameState> LoadGameState(Guid id)
@@ -45,8 +45,7 @@ namespace GameAssistant.Services
 
         public virtual void EndTurn(GameState state)
         {
-            _turnTracker.EndTurn(state);  
+            _turnTracker.EndTurn(state);
         }
-
     }
 }

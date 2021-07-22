@@ -8,23 +8,25 @@ jobs:
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}   # checkout the correct branch name
+          fetch-depth: 0                # fetch the whole repo history
+      
       - name: Setup dotnet
         uses: actions/setup-dotnet@v1
         with:
           dotnet-version: '5.x'
 
-      - name: Git Version
-        id: version
-        uses: codacy/git-version@2.4.0
-        with:
-          release-branch: main
 
       # Publish
       - name: Publish NuGet
         uses: brandedoutcast/publish-nuget@v2.5.5
         with:
           PROJECT_FILE_PATH: GameAssistant/GameAssistant.csproj
+          TAG_COMMIT: true
+          TAG_FORMAT: v*
           NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-          VERSION_STATIC: ${{ steps.version.outputs.version }}
+          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>$
           
