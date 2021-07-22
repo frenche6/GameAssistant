@@ -36,6 +36,6 @@ namespace GameAssistant.Interfaces
         /// Returns list of modified dice results.
         /// </summary>
         /// <returns>List of modified dice results</returns>
-        DiceResolution<T> RollBag();
+        DiceResolution<T> Roll();
     }
 }

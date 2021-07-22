@@ -63,7 +63,7 @@ namespace GameAssistant.Services
         /// Returns list of modified dice results.
         /// </summary>
         /// <returns>List of modified dice results</returns>
-        public DiceResolution<T> RollBag()
+        public DiceResolution<T> Roll()
         {
             var results = Dice.Select(die => die.Roll()).ToList();
             var modifiedResults = _diceResolver.ModifyDice(Dice);
