@@ -1,6 +1,5 @@
 ﻿using GameAssistant.Interfaces;
 using GameAssistant.Models;
-using GameAssistant.Services;
 using System.Collections.Generic;
 using Xunit;
 
@@ -25,7 +24,7 @@ namespace GameAssistant.UnitTest
                 PlayerTurn = 0
             };
 
-            var turnTracker = new TurnTracker();
+            var turnTracker = new CustomTurnTracker();
 
             //Act
             var actualState = turnTracker.EndTurn(gameState);
@@ -56,7 +55,7 @@ namespace GameAssistant.UnitTest
                 PlayerTurn = playerCount - 1
             };
 
-            var turnTracker = new TurnTracker();
+            var turnTracker = new CustomTurnTracker();
 
             //Act
             var actualState = turnTracker.EndTurn(gameState);
