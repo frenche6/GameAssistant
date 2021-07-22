@@ -1,6 +1,9 @@
-﻿namespace GameAssistant.Services
+﻿using GameAssistant.Models;
+
+namespace GameAssistant.Services
 {
-    class DieRollerService
+    public class DieRollerService<T>
     {
+       //Feeling cute, might delete later
     }
 }
