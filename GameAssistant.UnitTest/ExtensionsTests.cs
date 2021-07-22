@@ -14,7 +14,7 @@ namespace GameAssistant.UnitTest
         public void ConfigureGameAssistant_Success()
         {
             var serviceProvider = new ServiceCollection()
-                .ConfigureGameAssistant(new GameStateProvider())
+                .ConfigureGameAssistant(new GameStateProvider(), new CustomTurnTracker())
                 .BuildServiceProvider();
 
             var provider = serviceProvider.GetService<IGameStateProvider>();

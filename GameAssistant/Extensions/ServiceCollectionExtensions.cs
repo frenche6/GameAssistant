@@ -6,11 +6,14 @@ namespace GameAssistant.Extensions
 {
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection ConfigureGameAssistant<T>(this IServiceCollection services, T gameStateProvider) where T : class, IGameStateProvider
+        public static IServiceCollection ConfigureGameAssistant<TStateProvider, TTurnTracker>(
+            this IServiceCollection services, TStateProvider gameStateProvider, TTurnTracker turnTracker)
+            where TStateProvider : class, IGameStateProvider
+            where TTurnTracker : class, ITurnTracker
         {
             return services
-                .AddTransient<ITurnTracker, TurnTracker>()
-                .AddTransient<IGameStateProvider, T>(provider => gameStateProvider)
+                .AddTransient<ITurnTracker, TTurnTracker>(tracker => turnTracker)
+                .AddTransient<IGameStateProvider, TStateProvider>(provider => gameStateProvider)
                 .AddTransient<IGameStateService, GameStateService>();
         }
     }
