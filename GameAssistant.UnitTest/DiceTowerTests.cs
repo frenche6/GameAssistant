@@ -4,6 +4,7 @@ using GameAssistant.Services;
 using Moq;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Xunit;
 
@@ -123,6 +124,58 @@ namespace GameAssistant.UnitTest
 
             //Assert
             Assert.Empty(diceTower.Dice);
+        }
+
+        [Fact]
+        public void Roll_SuccessfullyRollsAllDice()
+        {
+            //Arrange
+            var diceSides = 20;
+            var numberOfDiceToAdd = 6;
+            var dice = new List<BaseDie<int>>();
+            for (var i = 0; i < numberOfDiceToAdd; i++)
+            {
+                dice.Add(new NumberDie(diceSides));
+            }
+
+            var returnDiceList = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            var diceResolverMock = new Mock<IDiceResolver<int>>();
+            diceResolverMock.Setup(x => x.ModifyDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
+            var diceTower = new DiceTower<int>(diceResolverMock.Object);
+            
+            //Act
+            diceTower.Dice = dice;
+            var results = diceTower.Roll();
+
+            for (var index = 0; index < returnDiceList.Count; ++index)
+            {
+                Assert.Equal(results.ModifiedDice[index], returnDiceList[index]);
+            }
+        }
+
+        [Fact]
+        public void Roll_SuccessfullyAddsHistoryItem()
+        {
+            var diceSides = 20;
+            var numberOfDiceToAdd = 6;
+            var dice = new List<BaseDie<int>>();
+            for (var i = 0; i < numberOfDiceToAdd; i++)
+            {
+                dice.Add(new NumberDie(diceSides));
+            }
+            
+            var returnDiceList = new List<int>() { 1, 2, 3, 4, 5, 6 };
+            var diceResolverMock = new Mock<IDiceResolver<int>>();
+            diceResolverMock.Setup(x => x.ModifyDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
+            var diceTower = new DiceTower<int>(diceResolverMock.Object);
+            
+            //Act
+            diceTower.Dice = dice;
+            var results = diceTower.Roll();
+            
+            Assert.Equal(diceTower.RollHistories.Count, 1);
+            Assert.Equal(diceTower.RollHistories[0].DiceRolled, dice);
+            Assert.Equal(diceTower.RollHistories[0].ModifiedRolled, results);
         }
     }
 }
