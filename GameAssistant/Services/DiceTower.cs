@@ -19,16 +19,29 @@ namespace GameAssistant.Services
             _diceResolver = diceModifierService;
         }
         
+        /// <summary>
+        /// Adds a single die to the list of dice
+        /// </summary>
+        /// <param name="die"></param>
         public void AddDie(BaseDie<T> die)
         {
             Dice.Add(die);
         }
         
+        /// <summary>
+        /// Adds a list of dice to the list of dice
+        /// </summary>
+        /// <param name="dice"></param>
         public void AddDice(List<BaseDie<T>> dice)
         {
             Dice.AddRange(dice);
         }
 
+        /// <summary>
+        /// Removes a die at the provided index
+        /// </summary>
+        /// <param name="index"></param>
+        /// <exception cref="ArgumentOutOfRangeException"></exception>
         public void RemoveDie(int index)
         {
             if (index >= Dice.Count)
@@ -36,6 +49,10 @@ namespace GameAssistant.Services
 
             Dice.RemoveAt(index);
         }
+
+        /// <summary>
+        /// Removes all dice from the list of dice
+        /// </summary>
         public void EmptyDiceTower()
         {
             Dice.Clear();
