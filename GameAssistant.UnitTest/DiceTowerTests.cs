@@ -173,7 +173,7 @@ namespace GameAssistant.UnitTest
             diceTower.Dice = dice;
             var results = diceTower.Roll();
             
-            Assert.Equal(diceTower.RollHistories.Count, 1);
+            Assert.Single(diceTower.RollHistories);
             Assert.Equal(diceTower.RollHistories[0].DiceRolled, dice);
             Assert.Equal(diceTower.RollHistories[0].ModifiedRolled, results);
         }

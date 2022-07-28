@@ -1,9 +1,9 @@
 ﻿using GameAssistant.Extensions;
 using GameAssistant.Interfaces;
 using GameAssistant.Models;
-using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
+using Microsoft.Extensions.DependencyInjection;
 using Xunit;
 
 namespace GameAssistant.UnitTest
