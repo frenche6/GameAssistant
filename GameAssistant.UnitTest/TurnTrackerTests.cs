@@ -8,12 +8,13 @@ namespace GameAssistant.UnitTest
     public class TurnTrackerTests
     {
         [Fact]
-        public void Endturn_WithPlayerList_IncrementsCurrentPlayer()
+        public void EndTurn_WithPlayerList_IncrementsCurrentPlayer()
         {
+            const int numberOfPlayers = 3;
             //Arrange
             var playersList = new List<IPlayer>();
 
-            for (int i = 0; i < 3; i++)
+            for (var i = 0; i < numberOfPlayers; i++)
             {
                 playersList.Add(new Player());
             }
@@ -39,12 +40,12 @@ namespace GameAssistant.UnitTest
         [InlineData(2)]
         [InlineData(3)]
         [InlineData(5)]
-        public void Endturn_WithTurnStatePastListCount_ShouldGoToBeginning(int playerCount)
+        public void EndTurn_WithTurnStatePastListCount_ShouldGoToBeginning(int playerCount)
         {
             //Arrange
             var playersList = new List<IPlayer>();
 
-            for (int i = 0; i < playerCount; i++)
+            for (var i = 0; i < playerCount; i++)
             {
                 playersList.Add(new Player());
             }

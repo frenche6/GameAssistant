@@ -49,7 +49,7 @@ namespace GameAssistant.UnitTest
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
 
             //Act
-            var numberOfDiceToAdd = 6;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
 
             for (var i = 0; i < numberOfDiceToAdd; i++)
@@ -71,7 +71,7 @@ namespace GameAssistant.UnitTest
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
 
             //Act
-            var numberOfDiceToAdd = 6;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
             for (var i = 0; i < numberOfDiceToAdd; i++)
             {
@@ -90,7 +90,7 @@ namespace GameAssistant.UnitTest
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
 
             //Act
-            var numberOfDiceToAdd = 6;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
             for (var i = 0; i < numberOfDiceToAdd; i++)
             {
@@ -112,7 +112,7 @@ namespace GameAssistant.UnitTest
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
 
             //Act
-            var numberOfDiceToAdd = 6;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
             for (var i = 0; i < numberOfDiceToAdd; i++)
             {
@@ -130,8 +130,8 @@ namespace GameAssistant.UnitTest
         public void Roll_SuccessfullyRollsAllDice()
         {
             //Arrange
-            var diceSides = 20;
-            var numberOfDiceToAdd = 6;
+            const int diceSides = 20;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
             for (var i = 0; i < numberOfDiceToAdd; i++)
             {
@@ -140,7 +140,7 @@ namespace GameAssistant.UnitTest
 
             var returnDiceList = new List<int>() { 1, 2, 3, 4, 5, 6 };
             var diceResolverMock = new Mock<IDiceResolver<int>>();
-            diceResolverMock.Setup(x => x.ModifyDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
+            diceResolverMock.Setup(x => x.OrderDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
             
             //Act
@@ -156,8 +156,8 @@ namespace GameAssistant.UnitTest
         [Fact]
         public void Roll_SuccessfullyAddsHistoryItem()
         {
-            var diceSides = 20;
-            var numberOfDiceToAdd = 6;
+            const int diceSides = 20;
+            const int numberOfDiceToAdd = 6;
             var dice = new List<BaseDie<int>>();
             for (var i = 0; i < numberOfDiceToAdd; i++)
             {
@@ -166,7 +166,7 @@ namespace GameAssistant.UnitTest
             
             var returnDiceList = new List<int>() { 1, 2, 3, 4, 5, 6 };
             var diceResolverMock = new Mock<IDiceResolver<int>>();
-            diceResolverMock.Setup(x => x.ModifyDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
+            diceResolverMock.Setup(x => x.OrderDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
             var diceTower = new DiceTower<int>(diceResolverMock.Object);
             
             //Act
@@ -177,5 +177,34 @@ namespace GameAssistant.UnitTest
             Assert.Equal(diceTower.RollHistories[0].DiceRolled, dice);
             Assert.Equal(diceTower.RollHistories[0].ModifiedRolled, results);
         }
+
+        // Test that ExplodeDice is called on the DiceResolver
+
+        [Fact]
+        public void ExplodeDice_ExplodesDiceSuccessfully()
+        {
+            //Arrange
+            const int diceSides = 20;
+            const int numberOfDiceToAdd = 6;
+            var dice = new List<BaseDie<int>>();
+            for (var i = 0; i < numberOfDiceToAdd; i++)
+            {
+                dice.Add(new NumberDie(diceSides));
+            }
+
+            var returnDiceList = new List<int>() { 1, 2, 3, 4, 5, 20 };
+            var diceResolverMock = new Mock<IDiceResolver<int>>();
+            diceResolverMock.Setup(x => x.OrderDice(dice)).Returns(new DiceResolution<int>(returnDiceList, ""));
+            var diceTower = new DiceTower<int>(diceResolverMock.Object);
+            diceTower.Dice = dice;
+            diceTower.Modifiers.Add(DiceModifier.Explode);
+            //Act
+
+            var results = diceTower.Roll();
+
+            //Assert
+            diceResolverMock.Verify(x => x.ExplodeDice(dice), Times.Once);
+        }
+
     }
 }

@@ -45,8 +45,7 @@ namespace GameAssistant.Services
             return await _gameStateProvider.GetAsync(id);
         }
 
-
-        public async Task UpdateGameState(GameState newState)
+        public async Task SaveGameState(GameState newState)
         {
             await _gameStateProvider.SaveAsync(newState);
         }

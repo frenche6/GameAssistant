@@ -11,6 +11,8 @@ namespace GameAssistant.Interfaces
         /// </summary>
         /// <param name="dice">The dice to apply rules against</param>
         /// <returns>The modified list of dice</returns>
-        DiceResolution<T> ModifyDice(List<BaseDie<T>> dice);
+        DiceResolution<T> OrderDice(List<BaseDie<T>> dice);
+
+        DiceResolution<T> ExplodeDice(List<BaseDie<T>> dice);
     }
 }

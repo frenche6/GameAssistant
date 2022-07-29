@@ -33,6 +33,6 @@ namespace GameAssistant.Models
         /// <summary>
         /// The index of the current player who's turn it is in the players list
         /// </summary>
-        public int PlayerTurn { get; set; }
+        public int PlayerTurn { get; set; } = 0;
     }
 }

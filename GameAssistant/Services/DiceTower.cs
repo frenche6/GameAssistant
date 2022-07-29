@@ -10,6 +10,7 @@ namespace GameAssistant.Services
     {
         public List<BaseDie<T>> Dice = new List<BaseDie<T>>();
         public List<RollHistory<T>> RollHistories = new List<RollHistory<T>>();
+        public List<DiceModifier> Modifiers = new List<DiceModifier>();
 
         //Services
         private readonly IDiceResolver<T> _diceResolver;
@@ -56,19 +57,26 @@ namespace GameAssistant.Services
         public void EmptyDiceTower()
         {
             Dice.Clear();
+            Modifiers.Clear();
         }
         
         public DiceResolution<T> Roll()
         {
             var results = Dice.Select(die => die.Roll()).ToList();
-            var modifiedResults = _diceResolver.ModifyDice(Dice);
+
+            foreach (var modifier in Modifiers)
+            {
+                
+            }
+            var modifiedResults = _diceResolver.OrderDice(Dice);
 
             //Create history item
             var historyItem = new RollHistory<T>
             {
                 DiceRolled = Dice, //Add dice rolled to history
                 OriginalRolled = results, //Add original rolls to history
-                ModifiedRolled = modifiedResults //Go run modify rules on original rolls
+                ModifiedRolled = modifiedResults, //Go run modify rules on original rolls
+                Modifiers = Modifiers
             };
 
             //Store modified rolls in history
@@ -78,6 +86,14 @@ namespace GameAssistant.Services
             EmptyDiceTower();
 
             return modifiedResults;
+        }
+
+        private void determineModifier(DiceModifier modifier)
+        {
+            switch (modifier)
+            {
+                case DiceModifier.Explode: 
+            }
         }
     }
 }

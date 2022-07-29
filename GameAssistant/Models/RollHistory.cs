@@ -21,6 +21,11 @@ namespace GameAssistant.Models
         public DiceResolution<T> ModifiedRolled { get; set; }
 
         /// <summary>
+        /// The modifiers applied to the dice
+        /// </summary>
+        public List<DiceModifier> Modifiers { get; set; } = new List<DiceModifier>();
+
+        /// <summary>
         /// When the dice were rolled
         /// </summary>
         public DateTime WhenRolled { get; set; } = DateTime.Now;

@@ -39,7 +39,7 @@ namespace GameAssistant.Interfaces
         /// </summary>
         /// <param name="newState">The updated state</param>
         /// <returns></returns>
-        public Task UpdateGameState(GameState newState);
+        public Task SaveGameState(GameState newState);
 
         /// <summary>
         /// Ends the current users turn
